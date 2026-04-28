@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizAI - AI-Powered MCQ Quiz Generator</title>
+    <meta name="description" content="Generate interactive quizzes from any content using AI. Create, share, and track quiz attempts." />
+    <style>
+      /* Instant loading screen - shows immediately */
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(to bottom right, #eff6ff, #ffffff, #eef2ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      #initial-loader .loader-content {
+        text-align: center;
+      }
+      
+      #initial-loader .logo-container {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 2rem;
+      }
+      
+      #initial-loader .logo-bg {
+        position: absolute;
+        inset: 0;
+        background: #2563eb;
+        border-radius: 50%;
+        opacity: 0.2;
+        animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+      }
+      
+      #initial-loader .logo {
+        position: relative;
+        background: #2563eb;
+        padding: 1.5rem;
+        border-radius: 50%;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+      
+      #initial-loader .brain-icon {
+        width: 3rem;
+        height: 3rem;
+        stroke: white;
+        stroke-width: 2;
+        fill: none;
+      }
+      
+      #initial-loader h1 {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+      }
+      
+      #initial-loader p {
+        color: #4b5563;
+        margin-bottom: 1.5rem;
+      }
+      
+      #initial-loader .spinner {
+        display: inline-block;
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 2px solid #2563eb;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+        margin-right: 0.5rem;
+      }
+      
+      #initial-loader .loading-text {
+        color: #2563eb;
+        font-weight: 500;
+        font-size: 0.875rem;
+      }
+      
+      #initial-loader .progress-bar {
+        width: 16rem;
+        height: 0.25rem;
+        background: #e5e7eb;
+        border-radius: 9999px;
+        overflow: hidden;
+        margin: 1.5rem auto 0;
+      }
+      
+      #initial-loader .progress-fill {
+        height: 100%;
+        width: 60%;
+        background: #2563eb;
+        border-radius: 9999px;
+        animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      
+      @keyframes ping {
+        75%, 100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+      
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      
+      /* Hide loader when React loads */
+      body.loaded #initial-loader {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Instant loading screen -->
+    <div id="initial-loader">
+      <div class="loader-content">
+        <div class="logo-container">
+          <div class="logo-bg"></div>
+          <div class="logo">
+            <svg class="brain-icon" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+        </div>
+        <h1>QuizAI</h1>
+        <p>AI-Powered Quiz Generator</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <div class="spinner"></div>
+          <span class="loading-text">Loading...</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
