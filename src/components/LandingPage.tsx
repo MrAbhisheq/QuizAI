@@ -19,7 +19,7 @@ export const LandingPage: React.FC = () => {
   }, [currentUser, navigate]);
 
   const handleGetStarted = () => {
-    navigate('/login');
+    navigate('/login?view=signup');
   };
 
   return (
@@ -356,28 +356,28 @@ export const LandingPage: React.FC = () => {
             </div>
 
             {/* Product */}
-            <div>
+            {/* <div>
               <h4 className="text-white font-semibold mb-4">Product</h4>
               <ul className="space-y-2">
                 <li><button onClick={handleGetStarted} className="hover:text-white transition-colors">Features</button></li>
                 <li><button onClick={handleGetStarted} className="hover:text-white transition-colors">Pricing</button></li>
                 <li><button onClick={handleGetStarted} className="hover:text-white transition-colors">AI Models</button></li>
               </ul>
-            </div>
+            </div> */}
 
             {/* Resources */}
-            <div>
+            {/* <div>
               <h4 className="text-white font-semibold mb-4">Resources</h4>
               <ul className="space-y-2">
                 <li><button onClick={handleGetStarted} className="hover:text-white transition-colors">Documentation</button></li>
                 <li><button onClick={handleGetStarted} className="hover:text-white transition-colors">Help Center</button></li>
                 <li><button onClick={() => navigate('/login')} className="hover:text-white transition-colors">Sign In</button></li>
               </ul>
-            </div>
+            </div> */}
           </div>
 
           <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 QuizAI. All rights reserved. Built with ❤️ for educators.</p>
+            <p>&copy; © 2026 Abhishek Kashyap | All rights reserved.</p>
           </div>
         </div>
       </footer>

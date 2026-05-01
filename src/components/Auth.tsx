@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { getFirebaseErrorMessage } from '../utils/firebaseErrors';
 import { Mail, Lock, User, ArrowLeft, CheckCircle2 } from 'lucide-react';
@@ -7,7 +7,10 @@ import { Mail, Lock, User, ArrowLeft, CheckCircle2 } from 'lucide-react';
 type AuthView = 'signin' | 'signup' | 'verification-sent' | 'forgot-password' | 'reset-sent';
 
 export const Auth: React.FC = () => {
-  const [view, setView] = useState<AuthView>('signin');
+  const [params] = useSearchParams();
+  const initialView: AuthView = params.get('view') === 'signup' ? 'signup' : 'signin';
+  const [view, setView] = useState<AuthView>(initialView);
+  // const [view, setView] = useState<AuthView>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -311,6 +314,9 @@ export const Auth: React.FC = () => {
             onClick={() => {
               setView(isSignUp ? 'signin' : 'signup');
               setError('');
+              navigate('/login?view=' + (isSignUp ? 'signin' : 'signup'), {
+                replace: true
+              });
             }}
             className="text-blue-600 hover:underline"
           >
