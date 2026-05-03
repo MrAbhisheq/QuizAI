@@ -5,6 +5,7 @@ import { db } from '../services/firebase';
 import { Quiz, QuizScore } from '../types';
 import { CheckCircle2, XCircle, Loader2, User, ArrowRight, ArrowLeft, Clock, AlertCircle } from 'lucide-react';
 import { toDate } from '../utils/dateHelpers';
+import { trackQuizStarted, trackQuizCompleted } from '../services/analytics';
 
 export const QuizAttempt: React.FC = () => {
   const { quizId } = useParams<{ quizId: string }>();
@@ -93,6 +94,14 @@ export const QuizAttempt: React.FC = () => {
     if (participantName.trim()) {
       setShowNameInput(false);
       setQuizStartTime(Date.now());
+      // Track quiz start event
+      if (quiz && quizId) {
+        trackQuizStarted({
+          quizId,
+          quizTitle: quiz.title,
+          numberOfQuestions: quiz.questions.length,
+        });
+      }
     }
   };
 
@@ -179,6 +188,16 @@ export const QuizAttempt: React.FC = () => {
       await addDoc(collection(db, 'attempts'), attemptData);
       setSubmitted(true);
       setCurrentQuestion(0); // Reset to first question for review
+
+      // Track quiz completion event
+      trackQuizCompleted({
+        quizId,
+        quizTitle: quiz.title,
+        score: quizScore.percentage,
+        totalQuestions: quizScore.totalQuestions,
+        correctAnswers: quizScore.correct,
+        completionTimeSeconds: completionTime,
+      });
     } catch (error) {
       console.error('Error saving attempt:', error);
     }

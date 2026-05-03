@@ -7,6 +7,7 @@ import { aiService } from '../services/ai/aiService';
 import { QuestionType } from '../types';
 import { FileText, Sparkles, Loader2, Upload, X, File } from 'lucide-react';
 import { parseFile, formatFileSize, ACCEPT_STRING } from '../utils/fileParser';
+import { trackQuizGenerated, trackFileUploaded, trackError } from '../services/analytics';
 
 type InputMode = 'text' | 'file';
 
@@ -50,6 +51,8 @@ export const QuizGenerator: React.FC = () => {
         throw new Error('The file appears to be empty. Please select a file with content.');
       }
       setFileContent(text);
+      // Track file upload
+      trackFileUploaded(file.type || file.name.split('.').pop() || 'unknown', file.size);
     } catch (err: any) {
       setFileError(err.message || 'Failed to read file');
       setSelectedFile(null);
@@ -130,6 +133,16 @@ export const QuizGenerator: React.FC = () => {
 
       const docRef = await addDoc(collection(db, 'quizzes'), quizData);
       
+      // Track quiz generation event
+      trackQuizGenerated({
+        quizId: docRef.id,
+        questionType,
+        numberOfQuestions,
+        difficulty,
+        aiModel: aiModel,
+        inputMode,
+      });
+
       // Navigate to the success page with quiz data
       navigate('/quiz-success', { 
         state: { 
@@ -142,7 +155,9 @@ export const QuizGenerator: React.FC = () => {
       });
     } catch (err: any) {
       console.error('Error generating quiz:', err);
-      setError(err.message || 'Failed to generate quiz. Please check your AI settings and try again.');
+      const errorMessage = err.message || 'Failed to generate quiz. Please check your AI settings and try again.';
+      setError(errorMessage);
+      trackError('quiz_generation', errorMessage);
     } finally {
       setLoading(false);
     }

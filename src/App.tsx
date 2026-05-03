@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { AuthProvider } from './contexts/AuthContext';
 import { Navbar } from './components/Navbar';
 import { LandingPage } from './components/LandingPage';
@@ -12,6 +13,18 @@ import { Settings } from './components/Settings';
 import { Profile } from './components/Profile';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useAuth } from './contexts/AuthContext';
+import { trackPageView } from './services/analytics';
+
+// Track page views on route changes
+const PageViewTracker: React.FC = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location.pathname]);
+
+  return null;
+};
 
 // Layout wrapper for authenticated routes
 const AuthenticatedLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -39,6 +52,7 @@ const HomeRedirect: React.FC = () => {
 function App() {
   return (
     <Router>
+      <PageViewTracker />
       <AuthProvider>
         <Routes>
           {/* Public Routes - No Navbar */}
@@ -114,3 +128,4 @@ function App() {
 }
 
 export default App;
+

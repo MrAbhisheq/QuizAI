@@ -6,6 +6,10 @@ import App from "./App";
 // Import debug utilities (available in browser console)
 import "./utils/firebaseDebug";
 
+// Initialize Firebase Analytics
+import { initAnalytics } from "./services/analytics";
+initAnalytics();
+
 // Hide initial loader when React is ready
 document.body.classList.add('loaded');
 

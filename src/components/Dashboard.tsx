@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { Quiz, QuizAttempt } from '../types';
 import { FileText, Trash2, Share2, Users, Loader2, Calendar, ExternalLink, Eye, MoreVertical } from 'lucide-react';
 import { format } from 'date-fns';
+import { trackQuizShared, trackQuizDeleted } from '../services/analytics';
 
 const formatCompletionTime = (seconds?: number): string => {
   if (seconds === undefined || seconds === null) return '–';
@@ -111,6 +112,9 @@ export const Dashboard: React.FC = () => {
       // Delete the quiz
       await deleteDoc(doc(db, 'quizzes', quizId));
       
+      // Track quiz deletion
+      trackQuizDeleted(quizId);
+
       // Reload quizzes
       await loadQuizzes();
     } catch (error) {
@@ -128,15 +132,18 @@ export const Dashboard: React.FC = () => {
           text: `Take this quiz: ${quiz?.title || 'Quiz'}`,
           url,
         });
+        trackQuizShared(quizId, 'native_share');
       } catch (err: any) {
         // User cancelled share - ignore
         if (err?.name !== 'AbortError') {
           navigator.clipboard.writeText(url);
+          trackQuizShared(quizId, 'link');
           alert('Quiz link copied to clipboard!');
         }
       }
     } else {
       navigator.clipboard.writeText(url);
+      trackQuizShared(quizId, 'link');
       alert('Quiz link copied to clipboard!');
     }
   };

@@ -14,6 +14,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../services/firebase';
 import { User, UserSettings } from '../types';
 import { LoadingScreen } from '../components/LoadingScreen';
+import { setAnalyticsUserId, trackSignUp, trackLogin, trackLogout } from '../services/analytics';
 
 interface AuthContextType {
   currentUser: FirebaseUser | null;
@@ -54,6 +55,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setCurrentUser(user);
       
       if (user) {
+        // Set analytics user ID for user-level tracking
+        setAnalyticsUserId(user.uid);
+
         // Fetch user data from Firestore
         const userDoc = await getDoc(doc(db, 'users', user.uid));
         if (userDoc.exists()) {
@@ -92,6 +96,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     await setDoc(doc(db, 'users', user.uid), newUserData);
 
+    // Track sign up event
+    trackSignUp('email');
+
     // Send email verification
     await sendEmailVerification(user);
 
@@ -109,6 +116,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       await firebaseSignOut(auth);
       throw { code: 'auth/email-not-verified', message: 'Please verify your email before signing in. Check your inbox for the verification link.' };
     }
+
+    // Track login event
+    trackLogin('email');
   };
 
   const signInWithGoogle = async () => {
@@ -126,10 +136,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         settings: defaultSettings
       };
       await setDoc(doc(db, 'users', user.uid), newUserData);
+      trackSignUp('google');
+    } else {
+      trackLogin('google');
     }
   };
 
   const signOut = async () => {
+    trackLogout();
     await firebaseSignOut(auth);
   };
 
