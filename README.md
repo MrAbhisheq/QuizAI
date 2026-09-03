@@ -30,8 +30,9 @@ A full-featured web application that uses AI to automatically generate quiz ques
 
 ## Screenshots
 
+![](Screenshots/QuizAI_6.png)
 <details>
-<summary><b>Click to expand screenshots (16)</b></summary>
+<summary><b>Click to see more screenshots (16)</b></summary>
 
 <table width="100%">
   <tr>
@@ -46,94 +47,63 @@ A full-featured web application that uses AI to automatically generate quiz ques
   </tr>
   <tr>
     <td width="50%" align="center">
-      <b>QuizAI 3</b><br>
       <img src="Screenshots/QuizAI_3.png" alt="QuizAI 3" width="100%">
     </td>
     <td width="50%" align="center">
-      <b>QuizAI 4</b><br>
       <img src="Screenshots/QuizAI_4.png" alt="QuizAI 4" width="100%">
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
-      <b>QuizAI 5</b><br>
       <img src="Screenshots/QuizAI_5.png" alt="QuizAI 5" width="100%">
     </td>
     <td width="50%" align="center">
-      <b>QuizAI 6</b><br>
       <img src="Screenshots/QuizAI_6.png" alt="QuizAI 6" width="100%">
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
-      <b>QuizAI 7</b><br>
       <img src="Screenshots/QuizAI_7.png" alt="QuizAI 7" width="100%">
     </td>
     <td width="50%" align="center">
-      <b>QuizAI 8</b><br>
       <img src="Screenshots/QuizAI_8.png" alt="QuizAI 8" width="100%">
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
-      <b>QuizAI 9</b><br>
       <img src="Screenshots/QuizAI_9.png" alt="QuizAI 9" width="100%">
     </td>
     <td width="50%" align="center">
-      <b>QuizAI 10</b><br>
       <img src="Screenshots/QuizAI_10.png" alt="QuizAI 10" width="100%">
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
-      <b>QuizAI 11</b><br>
       <img src="Screenshots/QuizAI_11.png" alt="QuizAI 11" width="100%">
     </td>
     <td width="50%" align="center">
-      <b>QuizAI 12</b><br>
       <img src="Screenshots/QuizAI_12.png" alt="QuizAI 12" width="100%">
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
-      <b>QuizAI 13</b><br>
       <img src="Screenshots/QuizAI_13.png" alt="QuizAI 13" width="100%">
     </td>
     <td width="50%" align="center">
-      <b>QuizAI 14</b><br>
       <img src="Screenshots/QuizAI_14.png" alt="QuizAI 14" width="100%">
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
-      <b>QuizAI 15</b><br>
       <img src="Screenshots/QuizAI_15.png" alt="QuizAI 15" width="100%">
     </td>
     <td width="50%" align="center">
-      <b>QuizAI 16</b><br>
       <img src="Screenshots/QuizAI_16.png" alt="QuizAI 16" width="100%">
     </td>
   </tr>
 </table>
 
 </details>
-
-![](Screenshots/QuizAI_1.png)
-![](Screenshots/QuizAI_2.png)
-![](Screenshots/QuizAI_3.png)
-![](Screenshots/QuizAI_4.png)
-![](Screenshots/QuizAI_5.png)
-![](Screenshots/QuizAI_6.png)
-![](Screenshots/QuizAI_7.png)
-![](Screenshots/QuizAI_8.png)
-![](Screenshots/QuizAI_9.png)
-![](Screenshots/QuizAI_10.png)
-![](Screenshots/QuizAI_11.png)
-![](Screenshots/QuizAI_12.png)
-![](Screenshots/QuizAI_13.png)
-![](Screenshots/QuizAI_14.png)
-![](Screenshots/QuizAI_15.png)
-![](Screenshots/QuizAI_16.png)
 
 ## Getting Started
 
