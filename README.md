@@ -32,7 +32,7 @@ A full-featured web application that uses AI to automatically generate quiz ques
 
 ![](Screenshots/QuizAI_6.png)
 <details>
-<summary><b>Click to see more screenshots (16)</b></summary>
+<summary><b>👆 CLICK TO VIEW ALL SCREENSHOTS (16)</b></summary>
 
 <table width="100%">
   <tr>
