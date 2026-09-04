@@ -28,7 +28,7 @@ A full-featured web application that uses AI to automatically generate quiz ques
 - Test API keys with one click to verify they work
 - Detailed error messages for failed API key tests
 
-## Demo
+## 🌐 Demo
 [Website Link](https://quiz-ai-vercel-nine.vercel.app/)
 
 ## Screenshots
